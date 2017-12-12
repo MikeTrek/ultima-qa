@@ -1,0 +1,34 @@
+# Codeception Test Suite Configuration
+#
+# Suite for acceptance tests.
+# Perform tests in browser using the WebDriver or PhpBrowser.
+# If you need both WebDriver and PHPBrowser tests - create a separate suite.
+
+actor: AcceptanceTester
+modules:
+    enabled:
+        - \Helper\Acceptance
+        - WebDriver:
+             url: 'http://localhost/' # Does not matter, use from env
+             browser: chrome
+             clear cookies: true
+             restart: true
+             host: 'ult1.ml'
+             window_size: false # disabled in ChromeDriver
+             port: 4444
+             browser: chrome
+             capabilities:
+                 chromeOptions:
+                 args: ["#-headless"]
+
+env:
+    staging:
+         modules:
+            config:
+                WebDriver:
+                    url: 'http://bglw.ult1.ml/'
+    celigo:
+         modules:
+            config:
+                WebDriver:
+                    url: 'http://bglw-celigo.ult1.ml/'                 
